@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html style="width: 1920px;height: 1080px;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>cmpmstudio</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="css/-Login-form-Page-BS4--Login-form-Page-BS4.css">
+    <link rel="stylesheet" href="css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="css/Search-Input-Responsive-with-Icon.css">
+    <link rel="stylesheet" href="css/Studious-selectbox.css">
+    <link rel="stylesheet" href="css/untitled.css">
+</head>
+
+ <body style="width: 100%;height: 100%;" onload="estado()"> <!-- MUDAR AQUI O FUNDO CHROMA KEY -->
+    <div class="container" id="painel"
+        style="padding: 15px;position: absolute;transform: translate(323px) scale(1.50);opacity: 0;margin-top: 10px;">
+        <div class="card"
+            style="background: rgba(23,63,94,0);position: absolute;border-radius: 3px;border-top-right-radius: 4px;border-top-left-radius: 4px;border-bottom-right-radius: 20px;border-bottom-left-radius: 4px;padding-left: 10px;height: 685px;width: 580px;margin-top: -3px;margin-left: -3px;border: 0px solid var(--bs-gray-200);border-top: 1px solid var(--bs-light);border-left: 1px solid var(--bs-light);">
+        </div>
+        <div class="card"
+            style="width: 270px;background: linear-gradient(rgb(26,68,101) 51%, rgb(23,63,94) 54%), rgb(23,63,94);display: grid;grid-template-columns: 25% 50% 25%;border-color: rgb(32,75,109);position: absolute;box-shadow: inset 0px 1px var(--bs-light);border-radius: 3px;">
+            <div class="card" style="background: rgba(255,255,255,0);border-width: 0px;padding: 3px;">
+                <div class="card-body"
+                    style="background: rgb(23,63,94);padding: 5px;border-radius: 3px;border: 1px solid rgb(32,75,109);">
+                    <h4 class="text-center card-title" id="votosNao"
+                        style="font-size: 37px;margin: 0px;font-weight: bold;color: var(--bs-red);">0</h4>
+                </div>
+            </div>
+            <div class="card-body" style="padding-left: 0px;padding-right: 0px;">
+                <h4 class="text-center card-title" style="margin: 0px;color: var(--bs-gray-100);font-weight: bold;">
+                    VOTAÇÃO</h4>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0);border-width: 0px;padding: 3px;">
+                <div class="card-body"
+                    style="background: rgb(23,63,94);padding: 5px;border-radius: 3px;border: 1px solid rgb(32,75,109);">
+                    <h4 class="text-center card-title" id="votosSim"
+                        style="font-size: 37px;margin: 0px;font-weight: bold;color: var(--bs-green);">0</h4>
+                </div>
+            </div>
+        </div>
+        <div class="card"
+            style="width: 300px;background: linear-gradient(#ffc738 51%, var(--bs-yellow) 54%), rgb(23,63,94);position: absolute;box-shadow: inset 0px 1px var(--bs-light);border-radius: 3px;margin-left: 275px;border-top-right-radius: 4px;border-color: var(--bs-yellow);border-top-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+            <div class="card-body" style="padding: 0px;">
+                <h4 class="text-start card-title" id="pauta"
+                    style="margin: 0px;color: rgb(23,63,94);font-weight: bold;padding-left: 5px;padding-top: 1px;padding-bottom: 1px;padding-right: 5px;font-size: 20px;">
+                    N°:</h4>
+            </div>
+        </div>
+        <div class="card"
+            style="width: 300px;background: linear-gradient(var(--bs-light) 51%, var(--bs-gray-200) 54%), rgb(23,63,94);position: absolute;box-shadow: inset 0px 1px var(--bs-light);border-radius: 3px;margin-left: 275px;margin-top: 32px;border-style: solid;border-color: var(--bs-gray-200);border-bottom-right-radius: 20px;">
+            <div class="card-body" style="padding: 0px;    max-height: 30px; ">
+                <h4 class="text-start card-title"
+                    style="margin: 0px;color: var(--bs-gray-900);font-weight: bold;padding-left: 5px;padding-right: 5px;padding-top: 1px;padding-bottom: 1px;font-size: 22px;">
+
+                    <marquee id="autores">
+
+                    </marquee>
+
+                </h4>
+            </div>
+        </div>
+        <div class="card" id="cardver"
+            style="width: 544px;background: rgba(255,255,255,0.56);position: absolute;border-radius: 3px;margin-left: 0px;margin-top: 70px;display: grid;box-shadow: inset 0px 1px rgb(255,255,255), 0px 1px rgb(255,255,255);border-style: solid;border-color: rgba(255,255,255,0.12);">
+            
+
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="presidente"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 94%, #f6c23e00 93%), #ffffff;">
+                    <img src="img/avatars/CaboBatista.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 143px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador Presidente<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Cabo Batista<br></h1>
+                    </div>
+                </div>
+            </div>
+
+            <span style="display: grid;grid-template-columns: 50% 50%;">
+            
+            
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver1"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/ToninhoCury.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Toninho Cury<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver2"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/brenda.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Brenda Évellyn<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver3"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/ProfBeth.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Profa. Beth<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver4"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/Ezequiel.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Ezequiel<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver5"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/ItamarAndre.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Itamar André<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver6"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/Gladston.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Gladston<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver7"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/Carlito.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                            
+                           <h1 style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Carlito<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver8"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/JoseEustaquio.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            José Eustáquio<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver9"
+                style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                <img src="img/avatars/JoseLuiz.webp"
+                    style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                <div class="col" style="width: 200px;">
+                    <h1 class="text-center"
+                        style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                        Vereador<br></h1>
+                    <h1
+                        style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                        Zé Luiz<br></h1>
+                </div>
+            </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver10"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/julioCesar.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Júlio César<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver11"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/sargentoLeomar.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Sargento Leomar<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver12"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/Mauri.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Mauri da JL<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver13"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/OtavianoMarques.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 18px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Otaviano Marques<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver14"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/Paulinho.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Paulinho<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver15"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/PauloHenrique.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Paulo Henrique<br></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-width: 0px;padding: 5px;background: rgba(255,255,255,0);">
+                <div class="card-body" id="ver16"
+                    style="padding: 0px;display: grid;grid-template-columns: 60px 100%;border-radius: 3px;border: 1px solid var(--bs-gray-300);background: linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 87%, var(--bs-yellow) 88%), #ffffff;">
+                    <img src="img/avatars/WilianCampos.webp"
+                        style="width: 56px;height: 56px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;box-shadow: 1px 0px var(--bs-gray-300);">
+                    <div class="col" style="width: 200px;">
+                        <h1 class="text-center"
+                            style="font-size: 14px;padding: 1px;color: var(--bs-gray-900);margin: 0px;font-weight: bold;background: rgba(0,0,0,0);margin-left: 4px;margin-right: 0px;margin-top: 4px;border-radius: 3px;width: 70px;border: 1px solid var(--bs-gray-300);margin-bottom: 5px;">
+                            Vereador<br></h1>
+                        <h1
+                            style="width: 200px;font-size: 20px;padding: 2px;padding-left: 5px;color: #000000;font-weight: bold;margin: 0px;padding-bottom: 5px;">
+                            Wilian Campos<br></h1>
+                    </div>
+                </div>
+            </div>
+        </span>
+        </div>
+        <div class="card"
+            style="width: 544px;background: linear-gradient(var(--bs-light) 51%, var(--bs-gray-200) 54%), rgb(23,63,94);position: absolute;box-shadow: inset 0px 1px var(--bs-light);border-radius: 3px;border-top-right-radius: 4px;border-top-left-radius: 4px;border-bottom-right-radius: 20px;border-bottom-left-radius: 4px;margin-top: 655px;display: grid;grid-template-columns: 25% 25% 25% 25%;border-style: solid;border-color: var(--bs-gray-200);padding-left: 10px;">
+            <div class="card-body" style="padding: 0px;">
+                <h4 class="text-start card-title"
+                    style="margin: 0px;color: var(--bs-green);font-weight: bold;padding-left: 5px;padding-top: 1px;padding-bottom: 1px;padding-right: 5px;font-size: 18px;">
+                    | Votou sim</h4>
+            </div>
+            <div class="card-body" style="padding: 0px;">
+                <h4 class="text-start card-title"
+                    style="margin: 0px;color: var(--bs-red);font-weight: bold;padding-left: 5px;padding-top: 1px;padding-bottom: 1px;padding-right: 5px;font-size: 18px;">
+                    | Votou não</h4>
+            </div>
+            <div class="card-body" style="padding: 0px;">
+                <h4 class="text-start card-title"
+                    style="margin: 0px;color: var(--bs-gray-800);font-weight: bold;padding-left: 5px;padding-top: 1px;padding-bottom: 1px;padding-right: 5px;font-size: 18px;">
+                    | Não votou</h4>
+            </div>
+            <div class="card-body" style="padding: 0px;">
+                <h4 class="text-start card-title"
+                    style="margin: 0px;color: var(--bs-yellow);font-weight: bold;padding-left: 5px;padding-top: 1px;padding-bottom: 1px;padding-right: 5px;font-size: 18px;">
+                    | Ausente</h4>
+            </div>
+        </div>
+        <div class="card"
+            style="width: 680px;background: linear-gradient(rgb(26,68,101) 51%, rgb(23,63,94) 54%), rgb(23,63,94);position: absolute;box-shadow: inset 0px 1px var(--bs-light);border-radius: 3px;margin-left: 580px;border-top-right-radius: 4px;border-top-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;border-color: rgb(23,63,94);">
+            <div class="card-body" style="padding: 0px;">
+                <div class="card-body" style="padding: 0px;position: absolute;background-color: var(--bs-red);z-index: 999;color: white;border-radius: 5px;height: 20px;margin-top: 3px;margin-left: 3px;padding-left: 5px;padding-right: 5px;" id="tipo">DESCRIÇÃO
+                </div>
+                <h4 class="text-start card-title"
+                    style="max-height: 25px;margin: 0px;color: var(--bs-gray-100);font-weight: bold;padding-left: 5px;padding-top: 1px;padding-bottom: 1px;padding-right: 5px;font-size: 20px;">
+                    <marquee scrollamount="10" direction="left" id="resumoPauta">
+                        MENSAGEM EM ROLAMENTO
+                    </marquee>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="reuniao"
+        style="padding: 0px;margin: 0px;position: absolute;transform: scale(1.20);margin-left: 175px;margin-top: 30px;">
+        <div class="row">
+            <div class="col" style="width: 100px;max-width: 100px;"><img src="img/logocmpp.fw.png"
+                    style="width: 60px;background: linear-gradient(rgb(33,78,113) 48%, rgb(23,63,94) 51%);padding: 2px;margin: 30px;border-radius: 15px;border: 0px solid #173f5e;">
+            </div>
+            <div class="col" style="align-items: center;display: flex;">
+                <div class="row">
+                    <div class="col">
+                        <h1 id="titulo"
+                            style="display: block;position: relative;background: linear-gradient(rgb(33,78,113) 45%, rgb(23,63,94) 51%);color: var(--bs-white);padding-left: 9px;padding-right: 9px;font-size: 24px;border-radius: 5.6px;z-index: -600;font-weight: bold;border: 1px solid rgb(23,63,94);margin: 4px;border-top-right-radius: 15px;">
+                            Título da Reunião</h1>
+                        <h1 id="subtitulo"
+                            style="display: block;position: relative;background: linear-gradient(var(--bs-light) 45%, var(--bs-gray-200) 51%);color: #173f5e;padding-left: 9px;padding-right: 9px;font-size: 22px;border-radius: 5.6px;z-index: -600;font-weight: bold;border-width: 1px;border-style: solid;margin: 4px;">
+                            Subtítulo</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="lower-third"
+        style="opacity:0;position: absolute;padding: 0px;margin-top: 859px;margin-left: 300px;margin-right: 0px;transform: scale(1.30);">
+        <div class="card"
+            style="width: 442px;position: absolute;height: 65px;border-style: solid;border-color: #ffc738;background: rgba(255,255,255,0);margin-top: 24px;border-radius: 20px;margin-left: 100px;">
+        </div>
+        <div class="card text-center"
+            style="width: 40px;max-width: 40px;height: 80px;margin-top: 13px;margin-left: -25px;text-align: center !important;padding: 4px;background: rgba(23,63,94,0.5);position: absolute;border: 1px solid rgb(255,255,255);">
+        </div>
+        <h1 id="sigla"
+            style="position: absolute;margin-top: 7px;padding: 4px;border: 1px solid var(--bs-gray-200);border-radius: 5.6px;color: rgb(23,63,94);font-weight: bold;padding-left: 10px;padding-right: 20px;font-size: 13px;margin-left: 128px;border-top-right-radius: 40px;background: var(--bs-light);">
+            Partido</h1>
+        <h1 id="funcao"
+            style="display: block;position: absolute;background: linear-gradient(rgb(33,78,113) 45%, rgb(23,63,94) 51%);color: var(--bs-gray-100);padding: 4px;padding-left: 9px;padding-right: 9px;font-size: 20px;border-radius: 5.6px;margin-left: 10px;">
+            Vereador(a)</h1>
+        <h1 id="nome"
+            style="min-width: 320px;position: absolute;margin-top: 27px;background: linear-gradient(var(--bs-light) 51%, var(--bs-gray-200) 54%);padding: 4px;border: 1px solid var(--bs-gray-200);border-radius: 5.6px;color: rgb(0,0,0);font-weight: bold;padding-left: 10px;padding-right: 10px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;">
+            Nome do vereador</h1>
+        <h1 id="email"
+            style="position: absolute;margin-top: 75px;background: linear-gradient(#ffc738 51%, var(--bs-yellow) 54%);padding: 4px;border: 1px solid var(--bs-gray-200);border-radius: 5.6px;color: rgb(23,63,94);font-weight: bold;padding-left: 10px;padding-right: 10px;font-size: 18px;border-bottom-right-radius: 40px;margin-left: 10px;">
+            emaildovereador@camarapatos.mg.gov.br</h1>
+        <h1
+            style="position: absolute;margin-top: 14px;padding: 4px;border-radius: 5.6px;color: rgb(255,255,255);padding-left: 10px;padding-right: 10px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;margin-left: -28px;border: 0px solid var(--bs-gray-200);font-size: 15px;font-weight: bold;text-align: center;">
+            C<br>M<br>P<br>M</h1>
+    </div>
+    <div class="container" id="sociais"
+        style="position: absolute;padding: 0px;width: 1920px;height: 1080px;margin-left: -262px;transform: scale(1.20);margin-top: 82px;">
+        <h1
+            style="display: block;position: absolute;background: linear-gradient(var(--bs-light) 45%, var(--bs-gray-200) 51%);color: #173f5e;padding: 4px;padding-left: 9px;padding-right: 9px;font-size: 16px;border-radius: 5.6px;margin-top: 63px;z-index: -600;margin-left: 1692px;font-weight: bold;border-width: 1px;border-style: solid;">
+            @camarapatosdeminas</h1><i class="icon ion-social-instagram-outline"
+            style="margin-top: 60px;margin-left: 1880px;position: absolute;background: linear-gradient(rgb(33,78,113) 44%, rgb(23,63,94) 51%);padding: 5px;border-radius: 5.6px;color: rgb(255,255,255);font-size: 22px;padding-top: 2px;padding-bottom: 0px;"></i>
+        <h1
+            style="display: block;position: absolute;background: linear-gradient(var(--bs-light) 45%, var(--bs-gray-200) 51%);color: #173f5e;padding: 4px;padding-left: 9px;padding-right: 9px;font-size: 16px;border-radius: 5.6px;margin-top: 103px;z-index: -600;margin-left: 1766px;font-weight: bold;border-width: 1px;border-style: solid;">
+            /camarapatos</h1><i class="icon ion-social-facebook-outline text-center"
+            style="margin-top: 100px;margin-left: 1880px;position: absolute;background: linear-gradient(rgb(33,78,113) 44%, rgb(23,63,94) 51%);padding: 5px;border-radius: 5.6px;color: rgb(255,255,255);font-size: 22px;padding-top: 2px;padding-bottom: 0px;width: 26.5px;"></i>
+        <h1
+            style="display: block;position: absolute;background: linear-gradient(var(--bs-light) 45%, var(--bs-gray-200) 51%);color: #173f5e;padding: 4px;padding-left: 9px;padding-right: 9px;font-size: 16px;border-radius: 5.6px;margin-top: 143px;z-index: -600;margin-left: 1693px;font-weight: bold;border-width: 1px;border-style: solid;">
+            camarapatos.mg.gov.br</h1><i class="icon ion-ios-world-outline text-center"
+            style="margin-top: 140px;margin-left: 1880px;position: absolute;background: linear-gradient(rgb(33,78,113) 44%, rgb(23,63,94) 51%);padding: 5px;border-radius: 5.6px;color: rgb(255,255,255);font-size: 22px;padding-top: 2px;padding-bottom: 0px;width: 26.5px;"></i>
+    </div>
+
+    <div id="cronometro" class="container"
+        style="position: absolute;padding: 0px;margin-top: 160px;margin-left: 78px;opacity:0">
+        <div class="card"
+            style="position: absolute;text-align: center;background: linear-gradient(var(--bs-light) 51%, var(--bs-gray-200) 56%);color: #173f5e;font-weight: bold;font-family: Nunito, sans-serif;border-radius: 15px;">
+            <div class="card-body" style="padding: 4px;padding-right: 10px;padding-left: 10px;">
+                <div class="row">
+                    <div class="col" style="padding-right: 5px;padding-left: 10px;">
+                        <h4 id="tempo" style="font-weight: 800;margin: 0px;font-size: 40px ;">00:00</h4>
+                    </div>
+                    <div class="col" style="padding-right: 10px;padding-left: 5px;"><i class="icon ion-android-time"
+                            style="font-size: 32px;"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/Studious-selectbox.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.6/velocity.min.js"
+        integrity="sha512-+VS2+Nl1Qit71a/lbncmVsWOZ0BmPDkopw5sXAS2W+OfeceCEd9OGTQWjgVgP5QaMV4ddqOIW9XLW7UVFzkMAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+//var socket = io('http://localhost/')
+var socket = io('http://votacao.camarapatos.mg.gov.br/')
+
+        pautasLocal = []
+
+        socket.on('lower-third-vereador', vereador => {
+
+            $('#lower-third #sigla').css('opacity',1)
+            $('#lower-third #funcao').html("Vereador(a)")
+
+            setTimeout(() => {
+                $('#lower-third #email').html(vereador.email)
+                $('#lower-third #nome').html(vereador.nome)
+                $('#lower-third #sigla').html(vereador.sigla)
+                $('#lower-third .card').width($('#lower-third #nome').width() - 78)
+            }, 400);
+
+
+            $('#lower-third').animate({
+                left: '250px',
+                opacity: 0
+            })
+
+            if (vereador.selecionado) {
+                $('#lower-third').animate({
+                    left: '0px',
+                    opacity: 1
+                })
+            }
+
+        })
+
+        socket.on('orador-to-client', orador => {
+
+            $('#lower-third #sigla').css('opacity',0)
+
+            setTimeout(() => {
+                $('#lower-third #email').html(orador.orgao)
+                $('#lower-third #nome').html(orador.nome)
+                $('#lower-third #funcao').html(orador.funcao)
+                $('#lower-third .card').width($('#lower-third #nome').width() - 78)
+            }, 400);
+
+
+            $('#lower-third').animate({
+                left: '250px',
+                opacity: 0
+            })
+
+            if (orador.selecionado) {
+                $('#lower-third').animate({
+                    left: '0px',
+                    opacity: 1
+                })
+            }
+
+        })
+
+        function startTimer(duration, display, ativado) {
+            var timer = duration, minutes, seconds
+
+            if (ativado) {
+                display.animate({
+                    left: '0px',
+                    opacity: 1
+                })
+
+                interv = setInterval(function () {
+                    minutes = parseInt(timer / 60, 10)
+                    seconds = parseInt(timer % 60, 10)
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes
+                    seconds = seconds < 10 ? "0" + seconds : seconds
+
+                    $("#tempo").html(minutes + ":" + seconds)
+
+                    if (timer === 30) {
+                        $('#cronometro .icon').css('color', 'red')
+                    }
+
+                    if (--timer < 0) {
+                        const audio = new Audio('/audio/campainha.mp3')
+                        audio.play()
+                        clearInterval(interv)
+                        $('#cronometro .icon').css('color', 'rgb(23,63,94)')
+                    }
+
+                }, 1000)
+
+            } else {
+                clearInterval(interv)
+                $("#tempo").html("00:00")
+                $('#cronometro .icon').css('color', '#173f5e')
+
+                display.animate({
+                    left: '-200px',
+                    opacity: 0
+                })
+            }
+        }
+
+        socket.on('cronometro-to-client', cronometro => {
+            var tempo = cronometro.tempo * 60,
+                display = $("#cronometro"),
+                estado = cronometro.ativado
+            startTimer(tempo, display, estado)
+        })
+
+        function estado() {
+            $('#subtitulo').hide(0)
+        }
+
+        socket.on('titulo-to-client', titulo => {
+            $('#titulo').html(titulo + " " + new Date(Date.now()).toLocaleString().split(' ')[0])
+        })
+
+        socket.on('subtitulo-to-client', subtitulo => {
+
+
+            if ($('#subtitulo').is(':visible') && subtitulo.estado) {
+                $('#reuniao img').animate({
+                    width: '70px'
+                })
+                $('#subtitulo').hide(500)
+                setTimeout(() => {
+                    $('#subtitulo').html(subtitulo.valor)
+                    $('#subtitulo').show(500)
+                }, 500);
+            } else {
+                $('#subtitulo').html(subtitulo.valor)
+                if (subtitulo.estado) {
+                    $('#subtitulo').show(1000)
+                    $('#reuniao img').animate({
+                        width: '70px'
+                    })
+                } else {
+                    $('#subtitulo').hide(1000)
+                    $('#reuniao img').animate({
+                        width: '60px'
+                    })
+                }
+            }
+
+        })
+
+        $(document).ready(function () {
+
+            setInterval(function () {
+
+                $('#sociais .icon').prop('deg', '0')
+                $($('#sociais .icon')[Math.floor(Math.random() * 3)]).animate(
+                    { deg: 360 },
+                    {
+                        duration: 1500,
+                        step: function (now) {
+                            $(this).css({ transform: 'rotate(' + now + 'deg)' });
+                        }
+                    }
+                )
+            }, 1500)
+        })
+
+        socket.on('pautas-to-client', pautasToClient => {
+            pautasLocal = pautasToClient
+            console.log(pautasLocal)
+        })
+
+        socket.on('painel-to-client', painel => {
+
+
+            setTimeout(() => {
+                $('#pauta').html("N°: " + pautasLocal[painel.id].pauta)
+                $('#resumoPauta').html(pautasLocal[painel.id].descricao)
+                $('#autores').html("Autor(es): " + pautasLocal[painel.id].autor)
+                //painel.tv
+                $('#tipo').html(painel.tv)
+
+
+                $('#presidente').css('background', 'linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 94%, #f6c23e00 93%), #ffffff')
+
+                $('.card-body').each(function () {
+                    if ($(this).css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(231, 74, 59) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box') {
+                        $(this).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(133, 135, 150) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+                    }
+                    if ($(this).css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(28, 200, 138) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box') {
+                        $(this).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(133, 135, 150) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+                    }
+
+                    
+                })
+
+                atualizarPlacar()
+
+            }, 300);
+
+
+
+
+            if (painel.selecionado) {
+                $('#reuniao').animate({
+                    opacity: 1
+                })
+
+                $('#sociais').animate({
+                    top: '0px'
+                })
+
+                $('#painel').animate({
+                    left: '40px',
+                    opacity: 0
+                })
+                $('#lower-third').animate({
+                    marginLeft: '300px',
+                    marginTop: '859px'
+                })
+
+                $('#lower-third').attr('style','opacity: 1; position: absolute; padding: 0px; margin-top: 859px; margin-left: 300px; margin-right: 0px; transform: scale(1.3); left: 0px;')
+
+                setTimeout(() => {
+                    $('#reuniao').animate({
+                        opacity: 0
+                    })
+
+                    $('#sociais').animate({
+                        top: '30px'
+                    })
+
+                    $('#painel').animate({
+                        opacity: 1,
+                        left: '0px'
+                    })
+
+                    $('#lower-third').animate({
+                        marginLeft: '900px',
+                        marginTop: '890px'
+                    })
+
+                    setTimeout(() => {
+                        $('#lower-third').attr('style','opacity: 1; position: absolute; padding: 0px; margin-top: 890px; margin-left: 900px; margin-right: 0px; transform: scale(1); left: 0px;')
+                    }, 500);
+                    
+
+                }, 200);
+
+
+            } else {
+                $('#reuniao').animate({
+                    opacity: 1
+                })
+
+                $('#sociais').animate({
+                    top: '0px'
+                })
+
+                $('#painel').animate({
+                    left: '40px',
+                    opacity: 0
+                })
+                $('#lower-third').animate({
+                    marginLeft: '300px',
+                    marginTop: '859px'
+                })
+
+                $('#lower-third').attr('style','opacity: 0; position: absolute; padding: 0px; margin-top: 859px; margin-left: 300px; margin-right: 0px; transform: scale(1.3); left: 0px;')
+            }
+        })
+
+        function atualizarPlacar() {
+            votosNao = 0
+            votosSim = 0
+
+	$(document).find('#presidente').css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 94%, rgb(28, 200, 138) 93%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box' ? votosSim++ : null
+
+            $(document).find('#presidente').css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 94%, rgb(231, 74, 59) 93%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box' ? votosNao++ : null
+
+            $('.card-body').each(function () {
+                if ($(this).css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(231, 74, 59) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box') {
+                    votosNao++
+                }
+                if ($(this).css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(28, 200, 138) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box') {
+                    votosSim++
+                }
+            })
+
+
+            $('#votosNao').html(votosNao)
+            $('#votosSim').html(votosSim)
+        }
+
+        socket.on('login-to-client', idEntrou => {
+            $(`#ver${idEntrou}`).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(133, 135, 150) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+        })
+
+        socket.on('disconnect-to-client', idSaiu => {
+            $(`#ver${idSaiu}`).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(246, 194, 62) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+        })
+
+        socket.on('resposta-to-client', resposta => {
+            console.log(resposta)
+            if (resposta.voto) {
+                $(`#ver${parseInt(resposta.id) + 1}`).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(28, 200, 138) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+            } else {
+                $(`#ver${parseInt(resposta.id) + 1}`).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(231, 74, 59) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+            }
+
+            atualizarPlacar()
+        })
+
+        socket.on('voto-presidente-to-client', voto => {
+            if(voto == 0){
+                $('#presidente').css('background', 'linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 94%, rgb(28, 200, 138) 93%), #ffffff')
+            } else if(voto == 1){
+                $('#presidente').css('background', 'linear-gradient(rgba(0,0,0,0) 47%, rgba(0,0,0,0.05) 52%), linear-gradient(90deg, white 94%, rgb(231, 74, 59) 93%), #ffffff')
+            } else if(voto == 2){
+                $('#presidente').css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%), linear-gradient(90deg, white 94%, rgba(246, 194, 62, 0) 93%), rgb(255, 255, 255)')
+            }
+
+            atualizarPlacar()
+        })
+
+        socket.on('ausencia-to-client', idToServer => {
+            $(`#ver${parseInt(idToServer) + 1}`).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(246, 194, 62) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+
+            atualizarPlacar()
+        })
+
+        socket.on('online-to-client', cookieToServer => {
+
+            $(`#ver${parseInt(cookieToServer) + 1}`).css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(28, 200, 138) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box' || $(`#ver${parseInt(cookieToServer) + 1}`).css('background') == 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(231, 74, 59) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box' ?  null : $(`#ver${parseInt(cookieToServer) + 1}`).css('background', 'linear-gradient(rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 0.05) 52%) repeat scroll 0% 0% / auto padding-box border-box, linear-gradient(90deg, rgb(255, 255, 255) 87%, rgb(133, 135, 150) 88%) repeat scroll 0% 0% / auto padding-box border-box, rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box')
+
+
+            atualizarPlacar()
+        })
+
+    </script>
+</body>
+
+</html>

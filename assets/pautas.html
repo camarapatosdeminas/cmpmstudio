@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Pautas</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="css/-Login-form-Page-BS4--Login-form-Page-BS4.css">
+    <link rel="stylesheet" href="css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="css/Search-Input-Responsive-with-Icon.css">
+    <link rel="stylesheet" href="css/Studious-selectbox.css">
+    <link rel="stylesheet" href="css/untitled.css">
+</head>
+
+<body onload="auth()" style="width: 100%;height: 100%;padding: 10px;">
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/Studious-selectbox.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+        integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        //var socket = io('http://localhost/')
+        var socket = io('http://votacao.camarapatos.mg.gov.br/')
+
+        var tipoDeVotacao = ""
+
+        function tipoDeVot(tipo) {
+            tipoDeVotacao = tipo
+        }
+
+        socket.on('pautas-to-client', pautasToClient => {
+            $('body').html('')
+            console.log(pautasToClient)
+            for (var i = 0; i < pautasToClient.length; i++) {
+
+                presidenteVota = pautasToClient[i].presidenteVota ? "<div class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary text-center' type='button' style='width: 100%;background: var(--bs-success);padding: 0px;height: 100%;font-size: 50px;font-weight: bold;'>SIM</button> </div><div class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-red);font-weight: bold;font-size: 50px;'>NÃO</button> </div> <div class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-gray-800);font-weight: bold;font-size: 50px;'>NULO</button> </div>" : ""
+
+                /* $('body').append("<div class='card shadow border-start-primary py-2' style='margin-top: 8px;margin-bottom: 8px;'> <div class='card-body'> <div class='row align-items-center no-gutters'> <div class='col me-2'> <div class='text-uppercase text-primary fw-bold text-xs mb-1'><span style='color: var(--bs-secondary);'>pauta</span></div> <div class='text-dark fw-bold h5 mb-0'><span style='font-size: 28px;'><span id='pautaa'>" + pautasToClient[i].pauta + '</span>, por ' + pautasToClient[i].autor + "</span></div> </div>  <div class='col-auto'><i class='fas fa-check-double fa-2x text-gray-300'></i></div> </div> <div class='text-uppercase text-primary fw-bold text-xs mb-1'><span style='color: var(--bs-secondary);'>" + pautasToClient[i].descricao + "</span></div> </div>      <span class='votacaoPauta' style='display: grid; grid-template-columns: 50% 50%;content-visibility: hidden;'>   "+ presidenteVota +"    </span> <span id='idpauta' style='opacity:0'>" + i + "</span> </div>") */
+
+
+
+                var escolha = `<span style='display:grid; grid-template-columns: 20% 20% 20% 20% 20%'>
+
+                    <div onclick="tipoDeVot('TURNO ÚNICO: ')" class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-gray-800);font-weight: bold;font-size: 15px;'>Turno único</button> </div>
+
+                    <div onclick="tipoDeVot('PRIMEIRO TURNO: ')" class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-gray-800);font-weight: bold;font-size: 15px;'>1o Turno</button> </div>
+
+                    <div onclick="tipoDeVot('QUEBRA DE INTERSTÍCIO: ')" class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-gray-800);font-weight: bold;font-size: 15px;'>Quebra de interstício</button> </div>
+
+                    <div onclick="tipoDeVot('SEGUNDO TURNO: ')" class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-gray-800);font-weight: bold;font-size: 15px;'>2o Turno</button> </div>
+
+                    <div onclick="tipoDeVot('REDAÇÃO: ')" class='card' style='padding: 10px;border-width: 0px;border-left-width: 0px;background-color: #ffffff00;'><button class='btn btn-primary' type='button' style='width: 100%;height: 100%;background: var(--bs-gray-800);font-weight: bold;font-size: 15px;'>Redação</button> </div>
+                    
+                    </span>`
+
+                $('body').append("<span><div class='card shadow border-start-primary py-2' style='margin-top: 8px;margin-bottom: 8px;'> <div class='card-body'> <div class='row align-items-center no-gutters'> <div class='col me-2'> <div class='text-uppercase text-primary fw-bold text-xs mb-1'><span style='color: var(--bs-secondary);'>pauta</span></div> <div class='text-dark fw-bold h5 mb-0'><span style='font-size: 28px;'><span id='pautaa'>" + pautasToClient[i].pauta + '</span>, por ' + pautasToClient[i].autor + "</span></div> </div>  <div class='col-auto'><i class='fas fa-check-double fa-2x text-gray-300'></i></div> </div> <div class='text-uppercase text-primary fw-bold text-xs mb-1'><span style='color: var(--bs-secondary);'>" + escolha + "</span></div> </div>       <span id='idpauta' style='content-visibility:hidden'>" + i + "</span> </div>   <span class='votacaoPauta' style='display: grid; grid-template-columns: 33.33% 33.33% 33.33%;content-visibility: hidden;'>   " + presidenteVota + "    </span></span>")
+            }
+        })
+
+        $(document).on('click', '.py-2', function () {
+
+
+            if ($(this).find('.fas').css('color') === "rgb(221, 223, 235)") {
+
+                $(this).find('.fas').attr('style', 'color: #83d183 !important')
+                $(this).attr('style', 'background-color: rgb(221 235 224);margin-top: 8px;margin-bottom: 8px;')
+
+                $(this).parent().find('.votacaoPauta').css('content-visibility', 'visible')
+
+                $(document).find('.py-2').not(this).find('.fas').attr('style', 'color: #dddfeb !important')
+                $(document).find('.py-2').not(this).attr('style', 'background-color: #fff;margin-top: 8px;margin-bottom: 8px;')
+                $(document).find('.py-2').not(this).parent().find('.votacaoPauta').css('content-visibility', 'hidden')
+
+
+                painel = {
+                    id: $(this).find('#idpauta').html(),
+                    selecionado: true,
+                    pauta: $(this).find('#pautaa').html(),
+                    tv: tipoDeVotacao
+                }
+
+            } else {
+                $(this).find('.fas').attr('style', 'color: #dddfeb !important')
+                $(this).attr('style', 'background-color: #fff;margin-top: 8px;margin-bottom: 8px;')
+
+                $(this).parent().find('.votacaoPauta').css('content-visibility', 'hidden')
+
+                painel = {
+                    id: $(this).find('#idpauta').html(),
+                    selecionado: false,
+                    pauta: $(this).find('#pautaa').html(),
+                    tv: tipoDeVotacao
+                }
+
+            }
+            socket.emit('painel-to-server', painel)
+
+            console.log(painel)
+        })
+
+        socket.on('pauta-selecionada-to-client', pautaSelecionada => {
+            if (pautaSelecionada.selecionado) {
+                $($('.fas')[pautaSelecionada.id]).attr('style', 'color: #83d183 !important')
+                $($('.card')[pautaSelecionada.id]).attr('style', 'background-color: rgb(221 235 224);margin-top: 8px;margin-bottom: 8px;')
+            }
+
+        })
+
+        function auth() {
+            if ($.cookie('id') != 16) {
+                window.location.href = "/login.html"
+            }
+        }
+
+        $(document).on('click', 'button', function () {
+
+            if($(this).html() == 'SIM'){
+                voto = 0
+                socket.emit('voto-presidente-to-server', voto)
+            }else if($(this).html() == 'NÃO'){
+                voto = 1
+                socket.emit('voto-presidente-to-server', voto)
+            } else if($(this).html() == 'NULO'){
+                voto = 2
+                socket.emit('voto-presidente-to-server', voto)
+            }
+
+            
+        })
+
+    </script>
+
+</body>
+
+</html>

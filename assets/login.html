@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - CMPM STUDIO</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="css/-Login-form-Page-BS4--Login-form-Page-BS4.css">
+    <link rel="stylesheet" href="css/Google-Style-Text-Input.css">
+    <link rel="stylesheet" href="css/Search-Input-Responsive-with-Icon.css">
+    <link rel="stylesheet" href="css/Studious-selectbox.css">
+    <link rel="stylesheet" href="css/untitled.css">
+</head>
+
+<body onload="auth()" class="bg-gradient-primary" style="width: 100%;height: 100%;background: rgb(255,255,255);">
+    <div class="container-fluid">
+        <div class="row mh-100vh">
+            <div class="col-10 col-sm-8 col-md-6 col-lg-6 offset-1 offset-sm-2 offset-md-3 offset-lg-0 align-self-center d-lg-flex align-items-lg-center align-self-lg-stretch bg-white p-5 rounded rounded-lg-0 my-5 my-lg-0"
+                id="login-block">
+                <div class="m-auto w-lg-75 w-xl-50">
+                    <h2 class="text-center text-info fw-light mb-5"
+                        style="color: rgb(23,63,94) !important;border-color: rgb(23,63,94);"><i
+                            class="far fa-caret-square-right"></i>&nbsp;CMPM STUDIO</h2>
+                    <form>
+                        <div class="form-group mb-3"><label class="form-label text-secondary">Vereador</label><select
+                                class="form-select">
+                                <optgroup label="Vereadores">
+                                    <option value="0" selected>Toninho Cury</option>
+                                    <option value="1">Brenda Evellyn</option>
+                                    <option value="2">Profa. Beth</option>
+                                    <option value="3">Ezequiel</option>
+                                    <option value="4">Itamar André</option>
+                                    <option value="5">Gladston</option>
+                                    <option value="6">Carlito </option>
+                                    <option value="7">José Eustáquio</option>
+                                    <option value="8">José Luiz</option>
+                                    <option value="9">Júlio Cesar</option>
+                                    <option value="10">Sargento Leomar</option>
+                                    <option value="11">Mauri da JL</option>
+                                    <option value="12">Otaviano Marques</option>
+                                    <option value="13">Paulinho</option>
+                                    <option value="14">Paulo Henrique</option>
+                                    <option value="15">Wilian de Campos</option>
+                                    <option value="16">Cabo Batista (Presidente)</option>
+                                </optgroup>
+                                <optgroup label="ADM">
+                                    <option value="17" selected>Administrador</option>
+                                </optgroup>
+                            </select></div>
+                        <div class="form-group mb-3"><label class="form-label text-secondary"
+                                style="position: relative;">Senha</label><input class="form-control" type="password"
+                                required=""></div>
+                    </form>
+                    <button class="btn btn-primary" id="entrar"
+                        style="width: 100%;background: rgb(23,63,94);color: rgb(255,255,255);">ENTRAR</button>
+                    <p class="mt-3 mb-0"></p>
+
+                    <span id="senha-incorreta" style='color:#cc3333'></span>
+
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-end" id="bg-block"
+                style="background-image: url(&quot;img/fundo%20camara.png&quot;);background-size: cover;background-position: center center;">
+                <p class="ms-auto small text-dark mb-2"><em>Photo by&nbsp;</em><a class="text-dark"
+                        href="https://unsplash.com/photos/v0zVmWULYTg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+                        target="_blank"><em>Aldain Austria</em></a><br></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/Studious-selectbox.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+        integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+
+        //var socket = io('http://localhost/')
+        var socket = io('http://votacao.camarapatos.mg.gov.br/')
+
+
+
+
+        // Initialize the agent at application startup.
+
+
+        var users = [    
+            '8769',
+            '2310',
+            '1720',
+            '6091',
+            '2177',
+            '3958',
+            '7025',
+            '8601',
+            '6272',
+            '4473',
+            '2944',
+            '9483',
+            '4178',
+            '8771',
+            '1219',
+            '3533',
+            'cpd2025',
+            'cpd2025'
+        ]
+
+
+        $('.btn').click(function () {
+            if ($('.form-control')[0].value === users[$('.form-select :selected').attr('value')]) {
+
+                $.cookie(
+                    'id',
+                    ($('.form-select :selected').attr('value')).replace(/[^\d]/g, "")
+                )
+
+                socket.emit('online-to-server', cookieToServer = $.cookie('id'))
+
+                if ($.cookie('id') == 16) {
+                    window.location.href = "/pautas.html"
+                } else if ($.cookie('id') == 17) {
+                    window.location.href = "/painel.html"
+                } else if ($.cookie('id') < 17 && $.cookie('id') >= 0) {
+                    window.location.href = "/votacao.html"
+                }
+
+            } else {
+                $('#senha-incorreta').html("Senha incorreta!")
+            }
+        })
+
+
+        function auth() {
+
+
+
+            if ($.cookie('id') == 16) {
+                window.location.href = "/pautas.html"
+            } else if ($.cookie('id') == 17) {
+                window.location.href = "/painel.html"
+            } else if ($.cookie('id') < 16 && $.cookie('id') >= 0) {
+                window.location.href = "/votacao.html"
+            }
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
